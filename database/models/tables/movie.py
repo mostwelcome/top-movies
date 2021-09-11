@@ -2,6 +2,16 @@ from database.db import db
 
 
 class Movie(db.Model):
+
+    def __init__(self, title, year, description, rating, ranking, review):
+        self.title = title
+        self.year = year
+        self.description = description
+        self.rating = rating
+        self.ranking = ranking
+        self.review = review
+        super().__init__()
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250))
     year = db.Column(db.Date)
@@ -9,7 +19,6 @@ class Movie(db.Model):
     rating = db.Column(db.Float)
     ranking = db.Column(db.Integer)
     review = db.Column(db.String(250))
-    img_url = db.Column(db.String)
 
     @classmethod
     def get_all_movies(cls):
