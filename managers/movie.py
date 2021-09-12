@@ -15,7 +15,7 @@ def get_movies_list():
     try:
         movies = Movie.get_all_movies()
         return movies
-    except Exception:
+    except Exception as e:
         return MovieError(error_code=500, error_message='Internal Server Error', error_details='Error while getting movie details')
 
 

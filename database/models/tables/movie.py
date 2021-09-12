@@ -1,6 +1,6 @@
 from database.db import db
 from dataclasses import dataclass
-
+from sqlalchemy import desc
 
 @dataclass
 class Movie(db.Model):
@@ -24,7 +24,7 @@ class Movie(db.Model):
 
     @classmethod
     def get_all_movies(cls):
-        return cls.query.all()
+        return cls.query.order_by(desc(cls.rating)).all()
 
     @classmethod
     def create(cls, **kwargs):
