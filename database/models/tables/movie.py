@@ -12,13 +12,6 @@ class Movie(db.Model):
     ranking: int
     review: str
 
-    def __init__(self, title, description, rating, ranking, review):
-        self.title = title
-        self.description = description
-        self.rating = rating
-        self.ranking = ranking
-        self.review = review
-
     id = db.Column(db.Integer, primary_key=True, auto_increment=True)
     title = db.Column(db.String(250), nullable=False)
     description = db.Column(db.Text)
@@ -46,9 +39,8 @@ class Movie(db.Model):
     def delete_movie(self):
         db.session.delete(self)
         db.session.commit()
+        return self
 
     @classmethod
     def get_movie(cls, id):
         return cls.query.get(id)
-
-    
