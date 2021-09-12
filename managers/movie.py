@@ -21,5 +21,6 @@ def update_movie_info():
     pass
 
 
-def delete_movie():
-    pass
+def delete_movie_details(id):
+    movie = Movie.get_book(id)
+    return Movie.delete_movie(movie)

@@ -42,3 +42,11 @@ class Movie(db.Model):
         db.session.add(self)
         db.session.commit()
         return self
+
+    def delete_movie(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def get_book(cls, id):
+        return cls.query.get(id)
