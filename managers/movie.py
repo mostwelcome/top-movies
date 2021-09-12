@@ -10,10 +10,6 @@ def add_movie_details(movie):
 
 def get_movies_list():
     movies = Movie.get_all_movies()
-    print(movies)
-    print(type(movies))
-    for movie in movies:
-        print(movie.id, movie.title)
     return jsonify(movies)
 
 
