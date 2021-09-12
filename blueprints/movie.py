@@ -1,6 +1,6 @@
 from database.models.tables.movie import Movie
 from flask import Blueprint, request
-from managers.movie import add_movie_details, delete_movie_details, get_movies_list
+from managers.movie import add_movie_details, delete_movie_details, get_movies_list, update_movie
 
 
 MOVIES_BOOKPRINT = Blueprint('movies', __name__)
@@ -17,9 +17,11 @@ def add_movie():
     return add_movie_details(obj)
 
 
-@MOVIES_BOOKPRINT.route('', methods=['PUT'])
-def update_movie_info():
-    return {'method': 'PUT'}
+@MOVIES_BOOKPRINT.route('/<id>', methods=['PUT'])
+def update_movie_info(id=None):
+    obj = Movie(**request.get_json())
+    update_movie(id,obj)
+    return {'word': 'anything'}
 
 
 @MOVIES_BOOKPRINT.route('/<id>', methods=['DELETE'])

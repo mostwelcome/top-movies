@@ -13,10 +13,12 @@ def get_movies_list():
     return jsonify(movies)
 
 
-def update_movie_info():
-    pass
+def update_movie(id, movie):
+    old_movie_obj = Movie.get_movie(id)
+    old_movie_obj.rating = movie.rating
+    old_movie_obj.save()
 
 
 def delete_movie_details(id):
-    movie = Movie.get_book(id)
+    movie = Movie.get_movie(id)
     return Movie.delete_movie(movie)

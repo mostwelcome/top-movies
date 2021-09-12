@@ -48,5 +48,7 @@ class Movie(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_book(cls, id):
+    def get_movie(cls, id):
         return cls.query.get(id)
+
+    
