@@ -20,11 +20,11 @@ class Movie(db.Model):
         self.review = review
 
     id = db.Column(db.Integer, primary_key=True, auto_increment=True)
-    title = db.Column(db.String(250))
+    title = db.Column(db.String(250), nullable=False)
     description = db.Column(db.Text)
     rating = db.Column(db.Float)
-    ranking = db.Column(db.Integer)
-    review = db.Column(db.String(250))
+    ranking = db.Column(db.Integer, nullable=True)
+    review = db.Column(db.String(250), nullable=True)
 
     def __str__(self) -> str:
         return f'{self.title} - {self.rating} - {self.description}'
