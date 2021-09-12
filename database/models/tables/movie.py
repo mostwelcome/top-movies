@@ -1,24 +1,33 @@
 from database.db import db
+from dataclasses import dataclass
 
 
+@dataclass
 class Movie(db.Model):
 
-    def __init__(self, title, year, description, rating, ranking, review):
+    id: int
+    title: str
+    description: str
+    rating: int
+    ranking: int
+    review: str
+
+    def __init__(self, title, description, rating, ranking, review):
         self.title = title
-        self.year = year
         self.description = description
         self.rating = rating
         self.ranking = ranking
         self.review = review
-        super().__init__()
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, auto_increment=True)
     title = db.Column(db.String(250))
-    year = db.Column(db.Date)
     description = db.Column(db.Text)
     rating = db.Column(db.Float)
     ranking = db.Column(db.Integer)
     review = db.Column(db.String(250))
+
+    def __str__(self) -> str:
+        return f'{self.title} - {self.rating} - {self.description}'
 
     @classmethod
     def get_all_movies(cls):

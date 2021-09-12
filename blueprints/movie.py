@@ -1,6 +1,6 @@
 from database.models.tables.movie import Movie
 from flask import Blueprint, request
-from managers.movie import get_movies_list
+from managers.movie import add_movie_details, get_movies_list
 
 
 MOVIES_BOOKPRINT = Blueprint('movies', __name__)
@@ -13,8 +13,8 @@ def movies_list():
 
 @MOVIES_BOOKPRINT.route('', methods=['POST'])
 def add_movie():
-    print(request.get_json())
-    return {'method': 'POST'}
+    obj = Movie(**request.get_json())
+    return add_movie_details(obj)
 
 
 @MOVIES_BOOKPRINT.route('', methods=['PUT'])
